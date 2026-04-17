@@ -1,15 +1,37 @@
+:root {
+  --primary: #1a1a2e;
+  --primary-light: #16213e;
+  --accent: #e94560;
+  --accent-glow: rgba(233, 69, 96, 0.4);
+  --gold: #f5c518;
+  --text-light: #f0f0f0;
+  --text-muted: #a0a0b0;
+  --card-bg: rgba(255, 255, 255, 0.08);
+  --card-border: rgba(255, 255, 255, 0.12);
+  --glass: rgba(255, 255, 255, 0.05);
+  --success: #00c853;
+  --danger: #ff5252;
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Poppins', sans-serif;
+}
+
 * {
   box-sizing: border-box;
-  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 html, body, #root {
-  padding: 0;
-  margin: 0;
   height: 100%;
+  font-family: var(--font-body);
+  background: var(--primary);
+  color: var(--text-light);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1 {
-  padding: 0;
-  margin: 3px;
+body {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  min-height: 100vh;
 }

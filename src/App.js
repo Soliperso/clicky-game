@@ -6,54 +6,64 @@ import butterfly from "./cards.json";
 import "./App.css";
 
 class App extends Component {
-  // Setting this.state.butterfly to the cards json array
   state = {
     butterfly,
     clickedButterflyIds: [],
     score: 0,
-    goal: 9,
+    goal: 8,
     status: ""
   };
 
-  //shuffle the butterflies cards in the browser when clicked
   shuffleScoreCard = id => {
     let clickedButterflyIds = this.state.clickedButterflyIds;
 
-    if(clickedButterflyIds.includes(id)){
-      this.setState({ clickedButterflyIds: [], score: 0, status:  "Game Over! You lost. Click to play again!" });
+    if (clickedButterflyIds.includes(id)) {
+      this.setState({
+        clickedButterflyIds: [],
+        score: 0,
+        status: "Game Over! You clicked the same butterfly twice."
+      });
       return;
-    }else{
-      clickedButterflyIds.push(id)
+    } else {
+      clickedButterflyIds.push(id);
 
-      if(clickedButterflyIds.length === 8){
-        this.setState({score: 8, status: "You Won! Great Job, Smartie! Click to play again!", clickedButterflyIds: []});
-        console.log('You Win');
+      if (clickedButterflyIds.length === 8) {
+        this.setState({
+          score: 8,
+          status: "You Won! Perfect memory!",
+          clickedButterflyIds: []
+        });
         return;
       }
 
-      this.setState({ butterfly, clickedButterflyIds, score: clickedButterflyIds.length, status: " " });
+      this.setState({
+        butterfly,
+        clickedButterflyIds,
+        score: clickedButterflyIds.length,
+        status: ""
+      });
 
       for (let i = butterfly.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
         [butterfly[i], butterfly[j]] = [butterfly[j], butterfly[i]];
       }
     }
-  }
+  };
 
-  // Map over this.state.cards and render a Card component for each card object
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">The Butterflies Clicky Game</h1>
+          <h1 className="App-title">Butterfly Memory</h1>
           <p className="App-intro">
-            Try not to click the same image twice!
+            Click each butterfly only once — can you remember them all?
           </p>
         </header>
-        <Score total={this.state.score}
-               goal={8}
-               status={this.state.status}
-               />
+        <Score
+          total={this.state.score}
+          goal={8}
+          status={this.state.status}
+        />
         <Wrapper>
           {this.state.butterfly.map(butterfly => (
             <Card
@@ -65,9 +75,9 @@ class App extends Component {
           ))}
         </Wrapper>
         <footer>
-          <p>Copyright &copy; 2019 | Ahmed Chebli</p>
+          <p>&copy; 2025 Butterfly Memory Game</p>
         </footer>
-    </div>
+      </div>
     );
   }
 }
